@@ -243,7 +243,6 @@ fn test() {
         (r#"<div onClick={() => void 0} aria-hidden />"#, None),
         (r#"<div onClick={() => void 0} aria-hidden={true} />"#, None),
         (r#"<div onClick={null} />"#, None),
-
         // All flavors of input
         (r#"<input onClick={() => void 0} />"#, None),
         (r#"<input type="button" onClick={() => void 0} />"#, None),
@@ -269,7 +268,6 @@ fn test() {
         (r#"<input type="time" onClick={() => void 0} />"#, None),
         (r#"<input type="url" onClick={() => void 0} />"#, None),
         (r#"<input type="week" onClick={() => void 0} />"#, None),
-
         // End all flavors of input
         (r#"<button onClick={() => void 0} className="foo" />"#, None),
         (r#"<datalist onClick={() => {}} />;"#, None),
@@ -282,7 +280,6 @@ fn test() {
         (r#"<audio onClick={() => {}} />;"#, None),
         (r#"<form onClick={() => {}} />;"#, None),
         (r#"<form onSubmit={() => {}} />;"#, None),
-
         // HTML elements attributed with an interactive role
         (r#"<div role="button" onClick={() => {}} />;"#, None),
         (r#"<div role="checkbox" onClick={() => {}} />;"#, None),
@@ -304,11 +301,9 @@ fn test() {
         (r#"<div role="tab" onClick={() => {}} />;"#, None),
         (r#"<div role="textbox" onClick={() => {}} />;"#, None),
         (r#"<div role="treeitem" onClick={() => {}} />;"#, None),
-
         // Presentation is a special case role that indicates intentional static semantics
         (r#"<div role="presentation" onClick={() => {}} />;"#, None),
         (r#"<div role="presentation" onKeyDown={() => {}} />;"#, None),
-
         // HTML elements with an inherent, non-interactive role
         (r#"<address onClick={() => {}} />;"#, None),
         (r#"<article onClick={() => {}} />;"#, None),
@@ -374,7 +369,6 @@ fn test() {
         (r#"<tr onClick={() => {}} />;"#, None),
         (r#"<video onClick={() => {}} />;"#, None),
         (r#"<ul onClick={() => {}} />;"#, None),
-
         // HTML elements attributed with an abstract role
         (r#"<div role="command" onClick={() => {}} />;"#, None),
         (r#"<div role="composite" onClick={() => {}} />;"#, None),
@@ -387,7 +381,6 @@ fn test() {
         (r#"<div role="structure" onClick={() => {}} />;"#, None),
         (r#"<div role="widget" onClick={() => {}} />;"#, None),
         (r#"<div role="window" onClick={() => {}} />;"#, None),
-
         // HTML elements attributed with a non-interactive role
         (r#"<div role="alert" onClick={() => {}} />;"#, None),
         (r#"<div role="alertdialog" onClick={() => {}} />;"#, None),
@@ -437,7 +430,6 @@ fn test() {
         (r#"<div role="tooltip" onClick={() => {}} />;"#, None),
         (r#"<div role="tree" onClick={() => {}} />;"#, None),
         (r#"<div role="treegrid" onClick={() => {}} />;"#, None),
-
         // All the possible handlers
         ("<div onCopy={() => {}} />;", None),
         ("<div onCut={() => {}} />;", None),
@@ -483,7 +475,6 @@ fn test() {
         ("<div onAnimationStart={() => {}} />;", None),
         ("<div onAnimationEnd={() => {}} />;", None),
         ("<div onAnimationIteration={() => {}} />;", None),
-
         // other tests
         (r"<div className='foo' onClick={() => {}} role='button' />;", None),
         (r"<div className='foo' onKeyDown={() => {}} role='button' />;", None),
@@ -563,7 +554,6 @@ fn test() {
             Some(serde_json::json!([{ "handlers": ["onClick", "onDblClick"] }])),
         ),
         (r"<span onClick={() => {}} />;", None),
-
         // TODO: I am unsure that any of this set should be failing at all, based on looking at the original rule's tests?
         (r"<div onClick={() => {}} role='document' />;", None),
         (r"<div onClick={() => {}} role='list' />;", None),
@@ -583,13 +573,11 @@ fn test() {
         (r"<div onClick={() => {}} role='alertdialog' />;", None),
         (r"<div onClick={() => {}} role='tabpanel' />;", None),
         (r"<div onClick={() => {}} role='tooltip' />;", None),
-
         // Start of ported tests.
         (r"<div onClick={() => void 0} />;", None),
         (r"<div onClick={() => void 0} role={undefined} />;", None),
         (r"<div onClick={() => void 0} {...props} />;", None),
         (r"<div onKeyUp={() => void 0} aria-hidden={false} />;", None),
-
         // Static elements; no inherent role
         (r#"<a onClick={() => {}} />;"#, None),
         (r#"<a onClick={() => void 0} />"#, None),
@@ -647,7 +635,6 @@ fn test() {
         (r#"<var onClick={() => {}} />;"#, None),
         (r#"<wbr onClick={() => {}} />;"#, None),
         (r#"<xmp onClick={() => {}} />;"#, None),
-
         // Handlers
         (r#"<div onKeyDown={() => {}} />;'"#, None),
         (r#"<div onKeyPress={() => {}} />;'"#, None),
