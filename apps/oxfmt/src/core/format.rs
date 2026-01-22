@@ -82,12 +82,7 @@ impl SourceFormatter {
                     insert_final_newline,
                 },
             ) => (
-                self.format_by_external_formatter(
-                    source_text,
-                    path,
-                    parser_name,
-                    external_options,
-                ),
+                self.format_by_external_formatter(source_text, path, parser_name, external_options),
                 insert_final_newline,
             ),
             #[cfg(feature = "napi")]

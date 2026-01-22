@@ -50,7 +50,7 @@ const x = <div className="p-4 flex">Hello</div>;
     expect(result.errors).toStrictEqual([]);
   });
 
-  test("should sort imports in <script lang=\"ts\">", async () => {
+  test('should sort imports in <script lang="ts">', async () => {
     const input = `<script lang="ts">
 import z from "z";
 import a from "a";

@@ -217,7 +217,12 @@ pub async fn format(
 ///
 /// Returns the formatted code as a string, which Prettier treats as a Doc.
 #[expect(clippy::allow_attributes)]
-#[allow(clippy::trailing_empty_array, clippy::unused_async, clippy::missing_errors_doc, clippy::missing_panics_doc)]
+#[allow(
+    clippy::trailing_empty_array,
+    clippy::unused_async,
+    clippy::missing_errors_doc,
+    clippy::missing_panics_doc
+)]
 #[napi]
 pub async fn format_to_doc(
     source_text: String,
@@ -326,7 +331,8 @@ fn convert_prettier_options_to_format_options(options: &Value) -> oxc_formatter:
 
     // singleQuote -> quote_style
     if let Some(single_quote) = obj.get("singleQuote").and_then(Value::as_bool) {
-        format_options.quote_style = if single_quote { QuoteStyle::Single } else { QuoteStyle::Double };
+        format_options.quote_style =
+            if single_quote { QuoteStyle::Single } else { QuoteStyle::Double };
     }
 
     // jsxSingleQuote -> jsx_quote_style

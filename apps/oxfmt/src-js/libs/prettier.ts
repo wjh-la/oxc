@@ -95,13 +95,7 @@ function serializeObjectOption(options: Options, sourceKey: string, targetKey: s
 }
 
 // Parsers that contain embedded JavaScript (need oxc plugin)
-const PARSERS_WITH_EMBEDDED_JS = new Set([
-  "vue",
-  "html",
-  "angular",
-  "svelte",
-  "astro",
-]);
+const PARSERS_WITH_EMBEDDED_JS = new Set(["vue", "html", "angular", "svelte", "astro"]);
 
 /**
  * Format non-js file
