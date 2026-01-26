@@ -6,7 +6,7 @@ use std::{
 
 use ignore::DirEntry;
 
-use crate::DEFAULT_OXLINTRC;
+use crate::{DEFAULT_OXLINT_CONFIG_TS, DEFAULT_OXLINTRC};
 
 pub struct ConfigWalker {
     inner: ignore::WalkParallel,
@@ -56,7 +56,7 @@ impl WalkCollector {
         }
         let Some(file_name) = entry.path().file_name() else { return false };
 
-        file_name == DEFAULT_OXLINTRC
+        file_name == DEFAULT_OXLINTRC || file_name == DEFAULT_OXLINT_CONFIG_TS
     }
 }
 

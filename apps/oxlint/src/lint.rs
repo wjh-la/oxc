@@ -21,7 +21,7 @@ use oxc_linter::{
 #[cfg(feature = "napi")]
 use crate::js_config::JsConfigResult;
 use crate::{
-    DEFAULT_OXLINTRC,
+    DEFAULT_OXLINT_CONFIG_TS, DEFAULT_OXLINTRC,
     cli::{CliRunResult, LintCommand, MiscOptions, ReportUnusedDirectives, WarningOptions},
     output_formatter::{LintCommandInfo, OutputFormatter},
     walk::Walk,
@@ -457,8 +457,6 @@ pub enum ConfigFile {
 }
 
 impl CliRunner {
-    /// TypeScript config file name (experimental)
-    const TS_CONFIG_NAME: &'static str = "oxlint.config.ts";
     #[must_use]
     pub fn with_cwd(mut self, cwd: PathBuf) -> Self {
         self.cwd = cwd;
@@ -700,7 +698,7 @@ impl CliRunner {
 
         // Check for config conflict in cwd (both JSON and TS configs)
         let json_path = cwd.join(DEFAULT_OXLINTRC);
-        let ts_path = cwd.join(Self::TS_CONFIG_NAME);
+        let ts_path = cwd.join(DEFAULT_OXLINT_CONFIG_TS);
 
         let json_exists = json_path.is_file();
         let ts_exists = ts_path.is_file();
@@ -709,7 +707,7 @@ impl CliRunner {
             return Err(OxcDiagnostic::error(format!(
                 "Both '{}' and '{}' found in {}. Please use only one config file.",
                 DEFAULT_OXLINTRC,
-                Self::TS_CONFIG_NAME,
+                DEFAULT_OXLINT_CONFIG_TS,
                 cwd.display()
             )));
         }
@@ -735,7 +733,7 @@ impl CliRunner {
     /// or if the config file is invalid. Does not apply the default config file.
     fn find_oxlint_config_in_directory(dir: &Path) -> Result<Option<ConfigFile>, OxcDiagnostic> {
         let json_path = dir.join(DEFAULT_OXLINTRC);
-        let ts_path = dir.join(Self::TS_CONFIG_NAME);
+        let ts_path = dir.join(DEFAULT_OXLINT_CONFIG_TS);
 
         let json_exists = json_path.is_file();
         let ts_exists = ts_path.is_file();
@@ -744,7 +742,7 @@ impl CliRunner {
             return Err(OxcDiagnostic::error(format!(
                 "Both '{}' and '{}' found in {}. Please use only one config file.",
                 DEFAULT_OXLINTRC,
-                Self::TS_CONFIG_NAME,
+                DEFAULT_OXLINT_CONFIG_TS,
                 dir.display()
             )));
         }
