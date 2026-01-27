@@ -23,7 +23,6 @@ fn no_will_update_set_state_diagnostic(span: Span) -> OxcDiagnostic {
 #[serde(rename_all = "kebab-case")]
 pub enum NoWillUpdateSetStateConfig {
     #[default]
-    #[serde(skip)]
     Allowed,
     DisallowInFunc,
 }
